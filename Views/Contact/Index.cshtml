@@ -1,0 +1,65 @@
+﻿@model OluMVCSite.Models.Contact
+
+@{
+    ViewBag.Title = "Contact Us Page";
+}
+
+<h2>Contact us page</h2>
+
+<p>@ViewBag.Message</p>
+
+@*<form action="~/Contact/ContactUs" method="post">
+
+    <p>Name: <input type="text" id="name" name="name" placeholder="Enter name" /></p>
+    <p>Email: <input type="email" id="email" name="email" placeholder="Enter email" /></p>
+    <p>Subject: <input type="text" id="subject" name="subject" placeholder="Enter subject" /></p>
+    <p>Reason: <textarea id="reason" name="reason" rows="5" cols="25"></textarea></p>
+
+    <p><input type="submit" id="submit" name="submit" value="Contact us" /></p>
+
+</form>*@
+
+@using (Html.BeginForm("ContactUs", "Contact", FormMethod.Post))
+{
+    //prevent cross-site scripting below
+    @Html.AntiForgeryToken()
+
+    <p>Fill in the form below...</p>
+
+    <hr/>
+
+    <div class="col-lg-12">
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">@Html.LabelFor(m => m.Name)</div>
+        <div class="col-sm-2">@Html.EditorFor(m => m.Name, new { @class = "form-control" })</div>
+        <div class="col-sm-8">@Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })</div>
+    </div><br/>
+
+    <div class="row">
+        <div class="col-sm-2">@Html.LabelFor(m => m.Email)</div>
+        <div class="col-sm-2">@Html.EditorFor(m => m.Email, new { @class = "form-control" })</div>
+        <div class="col-sm-8">@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })</div>
+    </div><br />
+
+    <div class="row">
+        <div class="col-sm-2">@Html.LabelFor(m => m.Subject)</div>
+        <div class="col-sm-2">@Html.EditorFor(m => m.Subject, new { @class = "form-control" })</div>
+        <div class="col-sm-8">@Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })</div>
+    </div><br />
+
+    <div class="row">
+        <div class="col-sm-2">@Html.LabelFor(m => m.Reason)</div>
+        <div class="col-sm-2">@Html.EditorFor(m => m.Reason, new { @class = "form-control" })</div>
+        <div class="col-sm-8">@Html.ValidationMessageFor(m => m.Reason, "", new { @class = "text-danger" })</div>
+    </div><br />
+
+    <div class="row">
+
+        <div class="col-lg-12"><input type="submit" id="submit" name="submit" value="Contact us" /></div>
+    </div>
+}
+

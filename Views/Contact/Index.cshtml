@@ -1,4 +1,4 @@
-﻿@model OluMVCSite.Models.Contact
+﻿@model OluMVCSite.Models.ContactViewModel
 
 @{
     ViewBag.Title = "Contact Us Page";
@@ -6,7 +6,23 @@
 
 <h2>Contact us page</h2>
 
-<p>@ViewBag.Message</p>
+@{
+
+    string result = ViewBag.Message;
+
+    if (result != null && (result.StartsWith("T") || result.StartsWith("E")))
+    {
+        //error message
+        <h3><strong><span style="color: red">@ViewBag.Message</span></strong></h3>
+    }
+    else
+    {
+        //success message
+        <h3><strong><span style="color: green">@ViewBag.Message</span></strong></h3>
+
+    }
+
+}
 
 @*<form action="~/Contact/ContactUs" method="post">
 
